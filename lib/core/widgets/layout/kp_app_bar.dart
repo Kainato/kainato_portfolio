@@ -5,7 +5,10 @@ class KpAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(title: const Text('Olá!'));
+    return AppBar(
+      title: const Text('Caio Calado de Araújo'),
+      centerTitle: false,
+    );
   }
 
   @override
