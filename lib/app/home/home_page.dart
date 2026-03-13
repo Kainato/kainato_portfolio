@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
+        spacing: 16.0,
         children: [
           Row(
             children: [
@@ -41,6 +42,24 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           SectionHeaderTile(title: 'Hard-skills', icon: Icons.book),
+          Wrap(
+            spacing: 8.0,
+            runSpacing: 8.0,
+            children: [
+              Chip(label: Text('Flutter')),
+              Chip(label: Text('Dart')),
+              Chip(label: Text('Git')),
+              Chip(label: Text('GitHub')),
+              Chip(label: Text('CloudFlare')),
+              Chip(label: Text('Markdown')),
+              Chip(label: Text('Firebase')),
+              Chip(label: Text('Supabase')),
+              Chip(label: Text('Laravel')),
+              Chip(label: Text('PHP')),
+              Chip(label: Text('Filament')),
+              Chip(label: Text('Python')),
+            ],
+          ),
         ],
       ),
     );
