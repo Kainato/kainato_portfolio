@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kainato_portfolio/core/routes/kp_routes.dart';
 
 import 'app/home/home_page.dart';
 
@@ -7,6 +8,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(theme: ThemeData.dark(), home: HomePage());
+    return MaterialApp(
+      routes: allAppRoutes,
+      initialRoute: KpRoutes.home.path,
+      theme: ThemeData.dark(),
+      home: HomePage(),
+    );
   }
 }

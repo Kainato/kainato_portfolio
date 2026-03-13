@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:kainato_portfolio/core/enum/assets.dart';
 import 'package:kainato_portfolio/core/enum/hard_skill.dart';
 import 'package:kainato_portfolio/core/enum/soft_skill.dart';
+import 'package:kainato_portfolio/core/routes/kp_routes.dart';
 
 import '../../core/extension/context_extension.dart';
-import '../../core/widgets/base/section_tile.dart';
-import '../../core/widgets/base/skill_chip.dart';
-import '../../core/widgets/layout/kp_scaffold.dart';
+import '../../widgets/base/section_tile.dart';
+import '../../widgets/base/skill_chip.dart';
+import '../../widgets/layout/kp_scaffold.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return KpScaffold(
+      route: KpRoutes.home,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
