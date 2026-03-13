@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kainato_portfolio/core/extension/context_extension.dart';
 
-class SectionTile extends StatelessWidget {
+class SectionHeaderTile extends StatelessWidget {
   final String title;
   final IconData icon;
-  const SectionTile({super.key, required this.title, required this.icon});
+  const SectionHeaderTile({super.key, required this.title, required this.icon});
 
   @override
   Widget build(BuildContext context) {

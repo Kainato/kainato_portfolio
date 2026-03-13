@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
               Flexible(flex: 1, child: Image.asset(Assets.dashatar.path)),
             ],
           ),
-          SectionTile(title: 'Hard-skills', icon: Icons.book),
+          SectionHeaderTile(title: 'Hard-skills', icon: Icons.book),
         ],
       ),
     );
