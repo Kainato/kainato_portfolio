@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kainato_portfolio/core/enum/assets.dart';
 import 'package:kainato_portfolio/core/enum/hard_skill.dart';
+import 'package:kainato_portfolio/core/enum/soft_skill.dart';
 
 import '../../core/extension/context_extension.dart';
 import '../../core/widgets/base/section_tile.dart';
@@ -53,6 +54,23 @@ class _HomePageState extends State<HomePage> {
                     label: skill.name,
                     labelColor: skill.onColor,
                     hoverColor: skill.color,
+                  ),
+                )
+                .toList(),
+          ),
+          SectionHeaderTile(title: 'Soft-skills', icon: Icons.book),
+          Wrap(
+            spacing: 8.0,
+            runSpacing: 8.0,
+            children: SoftSkill.values
+                .map(
+                  (skill) => SkillChip(
+                    label: skill.name,
+                    avatar: Icon(
+                      skill.icon,
+                      size: 16.0,
+                      color: context.onSurfaceColor,
+                    ),
                   ),
                 )
                 .toList(),

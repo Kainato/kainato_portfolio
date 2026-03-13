@@ -3,15 +3,15 @@ import 'package:kainato_portfolio/core/extension/context_extension.dart';
 
 class SkillChip extends StatefulWidget {
   final String label;
-  final Color labelColor;
-  final Color hoverColor;
+  final Color? labelColor;
+  final Color? hoverColor;
   final Widget? avatar;
 
   const SkillChip({
     super.key,
     required this.label,
-    required this.labelColor,
-    required this.hoverColor,
+    this.labelColor,
+    this.hoverColor,
     this.avatar,
   });
 
@@ -21,8 +21,8 @@ class SkillChip extends StatefulWidget {
 
 class _SkillChipState extends State<SkillChip> {
   String get label => widget.label;
-  Color get labelColor => widget.labelColor;
-  Color get hoverColor => widget.hoverColor;
+  Color get labelColor => widget.labelColor ?? context.onSurfaceColor;
+  Color get hoverColor => widget.hoverColor ?? Colors.transparent;
   Widget? get avatar => widget.avatar;
   bool _isHovered = false;
 
