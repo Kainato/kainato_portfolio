@@ -13,6 +13,10 @@ class SkillChip extends StatefulWidget {
 }
 
 class _SkillChipState extends State<SkillChip> {
+  String get skillName => widget.skill.name;
+  Color get skillColor => widget.skill.color;
+  Color get skillOnColor => widget.skill.onColor;
+
   bool _isHovered = false;
 
   @override
@@ -22,12 +26,12 @@ class _SkillChipState extends State<SkillChip> {
       onExit: (_) => setState(() => _isHovered = false),
       child: Chip(
         label: Text(
-          widget.skill.name,
+          skillName,
           style: TextStyle(
-            color: !_isHovered ? context.onSurfaceColor : widget.skill.onColor,
+            color: !_isHovered ? context.onSurfaceColor : skillOnColor,
           ),
         ),
-        backgroundColor: _isHovered ? widget.skill.color : Colors.transparent,
+        backgroundColor: _isHovered ? skillColor : Colors.transparent,
       ),
     );
   }
