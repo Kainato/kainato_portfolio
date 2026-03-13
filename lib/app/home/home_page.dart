@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kainato_portfolio/core/enum/assets.dart';
+import 'package:kainato_portfolio/core/enum/hard_skill.dart';
 
 import '../../core/extension/context_extension.dart';
 import '../../core/widgets/base/section_tile.dart';
+import '../../core/widgets/base/skill_chip.dart';
 import '../../core/widgets/layout/kp_app_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -45,20 +47,9 @@ class _HomePageState extends State<HomePage> {
           Wrap(
             spacing: 8.0,
             runSpacing: 8.0,
-            children: [
-              Chip(label: Text('Flutter')),
-              Chip(label: Text('Dart')),
-              Chip(label: Text('Git')),
-              Chip(label: Text('GitHub')),
-              Chip(label: Text('CloudFlare')),
-              Chip(label: Text('Markdown')),
-              Chip(label: Text('Firebase')),
-              Chip(label: Text('Supabase')),
-              Chip(label: Text('Laravel')),
-              Chip(label: Text('PHP')),
-              Chip(label: Text('Filament')),
-              Chip(label: Text('Python')),
-            ],
+            children: HardSkill.values
+                .map((skill) => SkillChip(skill: skill))
+                .toList(),
           ),
         ],
       ),
