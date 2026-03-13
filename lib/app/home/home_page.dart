@@ -48,7 +48,13 @@ class _HomePageState extends State<HomePage> {
             spacing: 8.0,
             runSpacing: 8.0,
             children: HardSkill.values
-                .map((skill) => SkillChip(skill: skill))
+                .map(
+                  (skill) => SkillChip(
+                    label: skill.name,
+                    labelColor: skill.onColor,
+                    hoverColor: skill.color,
+                  ),
+                )
                 .toList(),
           ),
         ],
