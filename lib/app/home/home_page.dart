@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:kainato_portfolio/core/enum/assets.dart';
 
-import '../../core/widgets/kp_app_bar.dart';
+import '../../core/extension/context_extension.dart';
+import '../../core/widgets/base/section_tile.dart';
+import '../../core/widgets/layout/kp_app_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,13 +18,29 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: KpAppBar(),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
-        children: const [
-          Text('Bem-vindo ao meu portfólio!'),
-          Divider(),
-          Text('Aqui você encontrará meus projetos e experiências.'),
+        children: [
+          Row(
+            children: [
+              Flexible(
+                flex: 3,
+                child: ListTile(
+                  title: Text(
+                    'Hello, I am Caio!',
+                    style: context.displayMedium,
+                  ),
+                  subtitle: Text(
+                    'A front-end developer who loves to create new app ideas and bring them to life using design and code tools, for both mobile and web devices.',
+                    style: context.titleSmall,
+                  ),
+                ),
+              ),
+              Flexible(flex: 1, child: Image.asset(Assets.dashatar.path)),
+            ],
+          ),
+          SectionTile(title: 'Hard-skills', icon: Icons.book),
         ],
       ),
     );
