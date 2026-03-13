@@ -35,7 +35,7 @@ class _SkillChipState extends State<SkillChip> {
         label: Text(
           label,
           style: TextStyle(
-            color: !_isHovered ? context.onSurfaceColor : labelColor,
+            color: _isHovered ? labelColor : context.onSurfaceColor,
           ),
         ),
         backgroundColor: _isHovered ? hoverColor : Colors.transparent,
