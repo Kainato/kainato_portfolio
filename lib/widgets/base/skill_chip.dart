@@ -6,6 +6,7 @@ class SkillChip extends StatefulWidget {
   final Color? labelColor;
   final Color? hoverColor;
   final Widget? avatar;
+  final VoidCallback? onTap;
 
   const SkillChip({
     super.key,
@@ -13,6 +14,7 @@ class SkillChip extends StatefulWidget {
     this.labelColor,
     this.hoverColor,
     this.avatar,
+    this.onTap,
   });
 
   @override
@@ -24,22 +26,30 @@ class _SkillChipState extends State<SkillChip> {
   Color get labelColor => widget.labelColor ?? context.onSurfaceColor;
   Color get hoverColor => widget.hoverColor ?? Colors.transparent;
   Widget? get avatar => widget.avatar;
+  VoidCallback? get onTap => widget.onTap;
+  bool get isClickable => onTap != null;
   bool _isHovered = false;
+  MouseCursor get mouseCursor =>
+      isClickable ? SystemMouseCursors.click : MouseCursor.defer;
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: Chip(
-        label: Text(
-          label,
-          style: TextStyle(
-            color: _isHovered ? labelColor : context.onSurfaceColor,
+    return GestureDetector(
+      onTap: onTap,
+      child: MouseRegion(
+        onEnter: (_) => setState(() => _isHovered = true),
+        onExit: (_) => setState(() => _isHovered = false),
+        child: Chip(
+          mouseCursor: mouseCursor,
+          label: Text(
+            label,
+            style: TextStyle(
+              color: _isHovered ? labelColor : context.onSurfaceColor,
+            ),
           ),
+          backgroundColor: _isHovered ? hoverColor : Colors.transparent,
+          avatar: avatar,
         ),
-        backgroundColor: _isHovered ? hoverColor : Colors.transparent,
-        avatar: avatar,
       ),
     );
   }

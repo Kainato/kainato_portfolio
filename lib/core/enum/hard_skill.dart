@@ -116,4 +116,37 @@ extension HardSkillExtension on HardSkill {
         return Colors.white;
     }
   }
+
+  String get link {
+    switch (this) {
+      case HardSkill.flutter:
+        return 'https://flutter.dev';
+      case HardSkill.dart:
+        return 'https://dart.dev';
+      case HardSkill.firebase:
+        return 'https://firebase.google.com';
+      case HardSkill.restApi:
+        return 'https://restfulapi.net';
+      case HardSkill.git:
+        return 'https://git-scm.com';
+      case HardSkill.github:
+        return 'https://github.com';
+      case HardSkill.figma:
+        return 'https://www.figma.com';
+      case HardSkill.cloudflare:
+        return 'https://www.cloudflare.com';
+      case HardSkill.markdown:
+        return 'https://www.markdownguide.org';
+      case HardSkill.supabase:
+        return 'https://supabase.com';
+      case HardSkill.laravel:
+        return 'https://laravel.com';
+      case HardSkill.php:
+        return 'https://www.php.net';
+      case HardSkill.filament:
+        return 'https://filamentphp.com';
+      case HardSkill.python:
+        return 'https://www.python.org';
+    }
+  }
 }

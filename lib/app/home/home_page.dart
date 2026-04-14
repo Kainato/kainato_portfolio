@@ -3,10 +3,12 @@ import 'package:kainato_portfolio/core/enum/assets.dart';
 import 'package:kainato_portfolio/core/enum/hard_skill.dart';
 import 'package:kainato_portfolio/core/enum/soft_skill.dart';
 import 'package:kainato_portfolio/core/routes/kp_routes.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/extension/context_extension.dart';
 import '../../widgets/base/section_tile.dart';
 import '../../widgets/base/skill_chip.dart';
+import '../../widgets/dialogs/kp_alert_dialog.dart';
 import '../../widgets/layout/kp_scaffold.dart';
 
 class HomePage extends StatefulWidget {
@@ -54,12 +56,27 @@ class _HomePageState extends State<HomePage> {
           Wrap(
             spacing: 8.0,
             runSpacing: 8.0,
+            alignment: WrapAlignment.start,
             children: HardSkill.values
                 .map(
                   (skill) => SkillChip(
                     label: skill.name,
                     labelColor: skill.onColor,
                     hoverColor: skill.color,
+                    onTap: () async {
+                      await showKpAlertDialog(
+                        context: context,
+                        title: 'Abrir link externo',
+                        content:
+                            'Você será redirecionado para ${skill.name}. Deseja continuar?',
+                        icon: Icons.open_in_new,
+                        confirmLabel: 'Abrir',
+                        cancelLabel: 'Cancelar',
+                        onConfirm: () async {
+                          await launchUrl(Uri.parse(skill.link));
+                        },
+                      );
+                    },
                   ),
                 )
                 .toList(),
@@ -68,6 +85,7 @@ class _HomePageState extends State<HomePage> {
           Wrap(
             spacing: 8.0,
             runSpacing: 8.0,
+            alignment: WrapAlignment.start,
             children: SoftSkill.values
                 .map(
                   (skill) => SkillChip(
