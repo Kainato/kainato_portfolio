@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../app/certificados/certificados_page.dart';
 import '../../app/home/home_page.dart';
 
 enum KpRoutes { home, certificados }
@@ -37,7 +38,9 @@ extension KpRoutesExtension on KpRoutes {
       case KpRoutes.home:
         return {KpRoutes.home.path: (context) => const HomePage()};
       case KpRoutes.certificados:
-        return {KpRoutes.certificados.path: (context) => const Placeholder()};
+        return {
+          KpRoutes.certificados.path: (context) => const CertificadosPage(),
+        };
     }
   }
 }
