@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          SectionHeaderTile(title: 'Hard-skills', icon: Icons.book),
+          SectionHeaderTile(title: 'Hard-skills', icon: Icons.code),
           Wrap(
             spacing: 8.0,
             runSpacing: 8.0,
