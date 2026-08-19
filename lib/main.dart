@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
+import 'package:kainato_portfolio/app.dart';
 
-import 'app.dart';
-
-void main() {
-  runApp(const MainApp());
-}
+void main() => runApp(const MainApp());
