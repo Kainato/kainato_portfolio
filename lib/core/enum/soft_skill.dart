@@ -1,3 +1,5 @@
+@Deprecated("This enum is deprecated. Update the new design.")
+
 import 'package:flutter/material.dart';
 
 enum SoftSkill {
