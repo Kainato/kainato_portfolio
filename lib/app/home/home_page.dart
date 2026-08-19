@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
 
+import '../../core/routes/kp_routes.dart';
+import '../../widgets/layout/kp_scaffold.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context) => KpScaffold(
+    route: KpRoutes.home,
     body: SelectionArea(
       child: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            pinned: true,
-            backgroundColor: const Color(0xEE0B0D12),
-            title: const Text('KAINATO'),
-            actions: [
-              TextButton(onPressed: () {}, child: const Text('Sobre')),
-              TextButton(onPressed: () {}, child: const Text('Projetos')),
-              TextButton(onPressed: () {}, child: const Text('Contato')),
-              const SizedBox(width: 18),
-            ],
-          ),
           SliverToBoxAdapter(child: _hero(context)),
           SliverToBoxAdapter(
             child: _intro(

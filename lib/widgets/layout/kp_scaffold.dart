@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kainato_portfolio/widgets/drawer/kp_drawer.dart';
 import 'package:kainato_portfolio/widgets/layout/kp_app_bar.dart';
 
 import '../../core/routes/kp_routes.dart';
@@ -15,18 +14,18 @@ class KpScaffold extends StatefulWidget {
 
 class _KpScaffoldState extends State<KpScaffold> {
   Widget get body => widget.body ?? Placeholder();
-  ScrollPhysics get scrollable => body is Placeholder
-      ? const NeverScrollableScrollPhysics()
-      : const PageScrollPhysics();
-  Widget? get drawer =>
-      widget.route != null ? KpDrawer(route: widget.route!) : null;
+  // ScrollPhysics get scrollable => body is Placeholder
+  //     ? const NeverScrollableScrollPhysics()
+  //     : const PageScrollPhysics();
+  // Widget? get drawer =>
+  //     widget.route != null ? KpDrawer(route: widget.route!) : null;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: KpAppBar(),
-      drawer: drawer,
-      body: SingleChildScrollView(physics: scrollable, child: body),
+      // drawer: drawer,
+      body: body,
     );
   }
 }
