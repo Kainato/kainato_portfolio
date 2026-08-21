@@ -103,37 +103,6 @@ class HomePage extends StatelessWidget {
     ),
   );
 
-  Widget _intro(String title, String text) => Padding(
-    padding: const EdgeInsets.fromLTRB(32, 90, 32, 35),
-    child: Center(
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 1100),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: const TextStyle(
-                color: Color(0xFF9B85FF),
-                letterSpacing: 2,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              text,
-              style: const TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.w700,
-                height: 1.2,
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-
   Widget _about() => Center(
     child: ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 1100),
