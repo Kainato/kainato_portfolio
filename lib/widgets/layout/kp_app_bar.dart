@@ -5,19 +5,27 @@ class KpAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: Adicionar no tema principal do App
+    final menuButtonStyle = ButtonStyle(
+      mouseCursor: const WidgetStatePropertyAll(SystemMouseCursors.click),
+    );
+
     return AppBar(
       backgroundColor: const Color(0xEE0B0D12),
       title: const Text('Caio Araújo'),
       actions: [
         TextButton(
+          style: menuButtonStyle,
           onPressed: () => _onPressed(context),
           child: const Text('Sobre'),
         ),
         TextButton(
+          style: menuButtonStyle,
           onPressed: () => _onPressed(context),
           child: const Text('Projetos'),
         ),
         TextButton(
+          style: menuButtonStyle,
           onPressed: () => _onPressed(context),
           child: const Text('Contato'),
         ),
