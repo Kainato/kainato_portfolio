@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/routes/kp_routes.dart';
+import '../../widgets/base/kp_intro.dart';
 import '../../widgets/layout/kp_scaffold.dart';
 
 class HomePage extends StatelessWidget {
@@ -13,26 +14,23 @@ class HomePage extends StatelessWidget {
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(child: _hero(context)),
-          SliverToBoxAdapter(
-            child: _intro(
-              'SOBRE MIM',
-              'Desenvolvedor focado em transformar problemas reais em experiências digitais úteis, claras e bem construídas.',
-            ),
-          ),
+          KpIntro(
+            title: 'SOBRE MIM',
+            content:
+                'Desenvolvedor focado em transformar problemas reais em experiências digitais úteis, claras e bem construídas.',
+          ).buildSliver(context),
           SliverToBoxAdapter(child: _about()),
-          SliverToBoxAdapter(
-            child: _intro(
-              'PROJETOS',
-              'Cases apresentados pelo problema, processo, decisões e resultado — não apenas pelo código.',
-            ),
-          ),
+          KpIntro(
+            title: 'PROJETOS',
+            content:
+                'Cases apresentados pelo problema, processo, decisões e resultado — não apenas pelo código.',
+          ).buildSliver(context),
           SliverToBoxAdapter(child: _projects()),
-          SliverToBoxAdapter(
-            child: _intro(
-              'PROCESSO',
-              'Um bom produto nasce de decisões conscientes.',
-            ),
-          ),
+          KpIntro(
+            title: 'PROCESSO',
+            content:
+                'Minhas etapas detalhadas do desenvolvimento, desde a concepção até a entrega final.',
+          ).buildSliver(context),
           SliverToBoxAdapter(child: _process()),
           SliverToBoxAdapter(child: _contact()),
           const SliverToBoxAdapter(child: SizedBox(height: 70)),
