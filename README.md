@@ -4,7 +4,7 @@ Este projeto é meu portifólio técnico que demonstra minhas principais qualida
 
 ## 💻 Tecnologias Utilizadas
 
-- **Linguagem / Framework:** Ex: Dart (Flutter)
+- **Linguagem / Framework:** Dart & Flutter
 - **Gerenciamento de Estado:** Provider
 - **Arquitetura:** Clean Architecture
 
