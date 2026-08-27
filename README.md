@@ -12,24 +12,24 @@ Este projeto é meu portifólio técnico que demonstra minhas principais qualida
 
 1. Clone o repositório
 
-’’’
+```
 git clone https://github.com/seu-usuario/seu-projeto.git
-’’’
+```
 
 2. Acesse a pasta do projeto
 
-’’’
+```
 cd seu-projeto
-’’’
+```
 
 3. Instale as dependências
 
-’’’
+```
 flutter pub get
-’’’
+```
 
 4. Execute a aplicação
 
-’’’
+```
 flutter run
-’’’
+```
