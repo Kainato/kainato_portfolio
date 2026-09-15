@@ -8,6 +8,13 @@ extension ContextExtension on BuildContext {
   double get height => MediaQuery.of(this).size.height;
 
   // ***************************************************************************
+  // * Breakpoints responsivos
+  // ***************************************************************************
+  bool get isMobile => width < 700;
+  bool get isTablet => width >= 700 && width < 1100;
+  bool get isDesktop => width >= 1100;
+
+  // ***************************************************************************
   // * Text Theme
   // ***************************************************************************
   // * Title
