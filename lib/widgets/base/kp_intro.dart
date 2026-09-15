@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../core/extension/context_extension.dart';
+
 class KpIntro extends StatelessWidget {
   final String title;
   final String content;
@@ -17,8 +19,14 @@ class KpIntro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final horizontalPadding = context.isMobile ? 20.0 : 32.0;
     return Padding(
-      padding: const EdgeInsets.fromLTRB(32, 90, 32, 35),
+      padding: EdgeInsets.fromLTRB(
+        horizontalPadding,
+        90,
+        horizontalPadding,
+        35,
+      ),
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 1100),
@@ -27,8 +35,8 @@ class KpIntro extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: const TextStyle(
-                  color: Color(0xFF9B85FF),
+                style: TextStyle(
+                  color: context.primaryColor,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -36,8 +44,8 @@ class KpIntro extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 content,
-                style: const TextStyle(
-                  fontSize: 28,
+                style: TextStyle(
+                  fontSize: context.isMobile ? 22 : 28,
                   fontWeight: FontWeight.w700,
                 ),
               ),

@@ -1,45 +1,80 @@
 import 'package:flutter/material.dart';
 
+import '../../core/extension/context_extension.dart';
+import '../../core/routes/kp_routes.dart';
+import '../../core/utils/kp_launcher.dart';
+
 class KpAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const KpAppBar({super.key});
+  final KpRoutes currentRoute;
+  final void Function(String sectionId)? onSectionTap;
+
+  const KpAppBar({
+    super.key,
+    this.currentRoute = KpRoutes.home,
+    this.onSectionTap,
+  });
+
+  static const _sections = [
+    ('sobre', 'Sobre'),
+    ('projetos', 'Projetos'),
+    ('contato', 'Contato'),
+  ];
+
+  void _handleSectionTap(BuildContext context, String id) {
+    final onTap = onSectionTap;
+    if (onTap != null) {
+      onTap(id);
+    } else {
+      Navigator.of(
+        context,
+      ).pushNamedAndRemoveUntil(KpRoutes.home.path, (route) => false);
+    }
+  }
+
+  void _goToRoute(BuildContext context, KpRoutes route) {
+    if (route == currentRoute) return;
+    Navigator.of(context).pushNamed(route.path);
+  }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Adicionar no tema principal do App
-    final menuButtonStyle = ButtonStyle(
-      mouseCursor: const WidgetStatePropertyAll(SystemMouseCursors.click),
-    );
+    final isMobile = context.isMobile;
 
     return AppBar(
-      backgroundColor: const Color(0xEE0B0D12),
-      title: const Text('Caio Araújo'),
+      title: const Text('Caio Calado'),
       actions: [
-        TextButton(
-          style: menuButtonStyle,
-          onPressed: () => _onPressed(context),
-          child: const Text('Sobre'),
+        if (!isMobile) ...[
+          for (final section in _sections)
+            Semantics(
+              button: true,
+              label: 'Ir para a seção ${section.$2}',
+              child: TextButton(
+                onPressed: () => _handleSectionTap(context, section.$1),
+                child: Text(section.$2),
+              ),
+            ),
+          Semantics(
+            button: true,
+            label: 'Ir para a página de certificados',
+            child: TextButton(
+              onPressed: () => _goToRoute(context, KpRoutes.certificados),
+              child: const Text('Certificados'),
+            ),
+          ),
+          const SizedBox(width: 8),
+        ],
+        Semantics(
+          button: true,
+          label: 'Abrir perfil no GitHub em uma nova aba',
+          child: IconButton(
+            tooltip: 'GitHub',
+            icon: const Icon(Icons.code),
+            onPressed: () =>
+                openExternalUrl(context, 'https://github.com/Kainato'),
+          ),
         ),
-        TextButton(
-          style: menuButtonStyle,
-          onPressed: () => _onPressed(context),
-          child: const Text('Projetos'),
-        ),
-        TextButton(
-          style: menuButtonStyle,
-          onPressed: () => _onPressed(context),
-          child: const Text('Contato'),
-        ),
-        const SizedBox(width: 18),
+        const SizedBox(width: 12),
       ],
-    );
-  }
-
-  void _onPressed(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Em breve!'),
-        duration: Duration(seconds: 1),
-      ),
     );
   }
 

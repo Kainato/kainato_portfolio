@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:kainato_portfolio/widgets/layout/kp_app_bar.dart';
 
+import '../../core/extension/context_extension.dart';
 import '../../core/routes/kp_routes.dart';
+import '../drawer/kp_drawer.dart';
 
-class KpScaffold extends StatefulWidget {
+class KpScaffold extends StatelessWidget {
   final Widget? body;
-  final KpRoutes? route;
-  const KpScaffold({super.key, required this.body, this.route});
+  final KpRoutes route;
+  final void Function(String sectionId)? onSectionTap;
 
-  @override
-  State<KpScaffold> createState() => _KpScaffoldState();
-}
-
-class _KpScaffoldState extends State<KpScaffold> {
-  Widget get body => widget.body ?? Placeholder();
-  // ScrollPhysics get scrollable => body is Placeholder
-  //     ? const NeverScrollableScrollPhysics()
-  //     : const PageScrollPhysics();
-  // Widget? get drawer =>
-  //     widget.route != null ? KpDrawer(route: widget.route!) : null;
+  const KpScaffold({
+    super.key,
+    required this.body,
+    this.route = KpRoutes.home,
+    this.onSectionTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: KpAppBar(),
-      // drawer: drawer,
-      body: body,
+      appBar: KpAppBar(currentRoute: route, onSectionTap: onSectionTap),
+      drawer: context.isMobile
+          ? KpDrawer(route: route, onSectionTap: onSectionTap)
+          : null,
+      body: body ?? const Center(child: CircularProgressIndicator()),
     );
   }
 }

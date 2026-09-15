@@ -34,6 +34,9 @@ class KpAlertDialog extends StatelessWidget {
   /// Define se o diálogo deve fechar ao clicar fora dele
   final bool barrierDismissible;
 
+  /// Exibe o botão de cancelamento. Defina como `false` para diálogos apenas informativos.
+  final bool showCancelButton;
+
   const KpAlertDialog({
     super.key,
     this.title,
@@ -45,6 +48,7 @@ class KpAlertDialog extends StatelessWidget {
     this.onConfirm,
     this.onCancel,
     this.barrierDismissible = true,
+    this.showCancelButton = true,
   });
 
   @override
@@ -58,13 +62,14 @@ class KpAlertDialog extends StatelessWidget {
           ? Text(content!, style: context.bodyMedium)
           : null,
       actions: [
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-            onCancel?.call();
-          },
-          child: Text(cancelLabel),
-        ),
+        if (showCancelButton)
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              onCancel?.call();
+            },
+            child: Text(cancelLabel),
+          ),
         FilledButton(
           onPressed: () {
             Navigator.of(context).pop();
@@ -89,6 +94,7 @@ Future<void> showKpAlertDialog({
   VoidCallback? onConfirm,
   VoidCallback? onCancel,
   bool barrierDismissible = true,
+  bool showCancelButton = true,
 }) {
   return showDialog(
     context: context,
@@ -103,6 +109,7 @@ Future<void> showKpAlertDialog({
       onConfirm: onConfirm,
       onCancel: onCancel,
       barrierDismissible: barrierDismissible,
+      showCancelButton: showCancelButton,
     ),
   );
 }
