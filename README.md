@@ -1,4 +1,4 @@
-# Portifólio Técnico
+# Meu Portifólio Técnico
 
 Este projeto é meu portifólio técnico que demonstra minhas principais qualidades profissionais e formas de trabalho diretamente via código Flutter
 
