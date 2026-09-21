@@ -57,13 +57,6 @@ abstract final class PortfolioData {
       url: 'https://github.com/Kainato',
       icon: Icons.code,
     ),
-    ContactLink(
-      type: ContactLinkType.website,
-      label: 'Portfólio',
-      value: 'sites.google.com/view/portifolio-caio-calado',
-      url: resumeUrl,
-      icon: Icons.language_outlined,
-    ),
   ];
 
   static const List<Skill> skills = [
