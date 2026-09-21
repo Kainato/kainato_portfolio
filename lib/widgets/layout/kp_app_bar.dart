@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/extension/context_extension.dart';
 import '../../core/routes/kp_routes.dart';
+import '../base/kp_appbar_action.dart';
 
 class KpAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// A rota (página) atual exibida no app bar.
@@ -61,21 +62,13 @@ class KpAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         if (!isMobile) ...[
           for (final section in _sections)
-            Semantics(
-              button: true,
-              label: 'Ir para a seção ${section.$2}',
-              child: TextButton(
-                onPressed: () => _handleSectionTap(context, section.$1),
-                child: Text(section.$2),
-              ),
+            KpAppbarAction(
+              label: section.$2,
+              onSectionTap: () => _handleSectionTap(context, section.$1),
             ),
-          Semantics(
-            button: true,
-            label: 'Ir para a página de certificados',
-            child: TextButton(
-              onPressed: () => _goToRoute(context, KpRoutes.certificados),
-              child: const Text('Certificados'),
-            ),
+          KpAppbarAction(
+            label: 'Certificados',
+            onSectionTap: () => _goToRoute(context, KpRoutes.certificados),
           ),
           const SizedBox(width: 8),
         ],
