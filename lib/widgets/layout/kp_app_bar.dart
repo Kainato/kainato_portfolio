@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../core/extension/context_extension.dart';
 import '../../core/routes/kp_routes.dart';
-import '../../core/utils/kp_launcher.dart';
 
 class KpAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// A rota (página) atual exibida no app bar.
   final KpRoutes currentRoute;
+
   /// Callback acionado quando uma seção é tocada no app bar.
   final void Function(String sectionId)? onSectionTap;
 
@@ -70,17 +70,6 @@ class KpAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           const SizedBox(width: 8),
         ],
-        Semantics(
-          button: true,
-          label: 'Abrir perfil no GitHub em uma nova aba',
-          child: IconButton(
-            tooltip: 'GitHub',
-            icon: const Icon(Icons.code),
-            onPressed: () =>
-                openExternalUrl(context, 'https://github.com/Kainato'),
-          ),
-        ),
-        const SizedBox(width: 12),
       ],
     );
   }
