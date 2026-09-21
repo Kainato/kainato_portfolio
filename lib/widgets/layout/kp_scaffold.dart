@@ -10,6 +10,13 @@ class KpScaffold extends StatelessWidget {
   final KpRoutes route;
   final void Function(String sectionId)? onSectionTap;
 
+  /// `KpScaffold` é um widget de scaffold personalizado que inclui um
+  /// app bar personalizado (`KpAppBar`) e um drawer condicional que só é exibido para telas menores.
+  ///
+  /// ### Parâmetros
+  /// - `body`: O corpo do scaffold.
+  /// - `route`: A página (rota) atual do scaffold.
+  /// - `onSectionTap`: Callback acionado quando uma seção é tocada no app bar ou drawer.
   const KpScaffold({
     super.key,
     required this.body,
