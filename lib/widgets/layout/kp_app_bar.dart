@@ -5,9 +5,16 @@ import '../../core/routes/kp_routes.dart';
 import '../../core/utils/kp_launcher.dart';
 
 class KpAppBar extends StatelessWidget implements PreferredSizeWidget {
+  /// A rota (página) atual exibida no app bar.
   final KpRoutes currentRoute;
+  /// Callback acionado quando uma seção é tocada no app bar.
   final void Function(String sectionId)? onSectionTap;
 
+  /// `KpAppBar` é um widget de app bar personalizado que exibe o título do portfólio e seções de navegação.
+  ///
+  /// ### Parâmetros
+  /// - `currentRoute`: A página (rota) atual.
+  /// - `onSectionTap`: Callback acionado quando uma seção é tocada.
   const KpAppBar({
     super.key,
     this.currentRoute = KpRoutes.home,
