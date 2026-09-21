@@ -6,17 +6,26 @@ import '../../core/routes/kp_routes.dart';
 import '../../core/utils/kp_launcher.dart';
 
 class KpDrawer extends StatelessWidget {
+  /// A página (rota) atual exibida no drawer.
   final KpRoutes route;
+  /// Callback acionado quando uma seção é tocada no drawer.
   final void Function(String sectionId)? onSectionTap;
 
+  /// `KpDrawer` é um widget de drawer personalizado que exibe seções de navegação e links de contato.
+  ///
+  /// ### Parâmetros
+  /// - `route`: A página (rota) atual.
+  /// - `onSectionTap`: Callback acionado quando uma seção é tocada.
   const KpDrawer({super.key, required this.route, this.onSectionTap});
 
+  /// Seções de navegação exibidas no drawer. Cada tupla contém o ID da seção, o título e o ícone correspondente.
   static const _sections = [
     ('sobre', 'Sobre', Icons.person_outline),
     ('projetos', 'Projetos', Icons.work_outline),
     ('contato', 'Contato', Icons.mail_outline),
   ];
 
+  /// Manipula o toque em uma seção do drawer. Fecha o drawer e aciona o callback `onSectionTap` se fornecido. Caso contrário, navega para a página inicial.
   void _handleSectionTap(BuildContext context, String id) {
     Navigator.pop(context);
     final onTap = onSectionTap;
