@@ -21,12 +21,17 @@ class KpAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onSectionTap,
   });
 
+  /// Seções de navegação disponíveis no app bar que redirecionam para diferentes partes da `HomePage`. Cada seção é representada por um par `(id, label)`.
   static const _sections = [
     ('sobre', 'Sobre'),
     ('projetos', 'Projetos'),
     ('contato', 'Contato'),
   ];
 
+  /// Manipula o toque em uma seção do app bar.
+  ///
+  /// Se um callback `onSectionTap` for fornecido, ele será chamado com o `id` da seção.
+  /// Caso contrário, a navegação padrão redireciona para a página inicial.
   void _handleSectionTap(BuildContext context, String id) {
     final onTap = onSectionTap;
     if (onTap != null) {
@@ -38,6 +43,10 @@ class KpAppBar extends StatelessWidget implements PreferredSizeWidget {
     }
   }
 
+  /// Manipula a navegação para uma rota específica.
+  ///
+  /// Se a rota fornecida for a mesma que a rota atual, nenhuma ação é tomada.
+  /// Caso contrário, a navegação é realizada para a rota especificada.
   void _goToRoute(BuildContext context, KpRoutes route) {
     if (route == currentRoute) return;
     Navigator.of(context).pushNamed(route.path);
@@ -45,7 +54,7 @@ class KpAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = context.isMobile;
+    final bool isMobile = context.isMobile;
 
     return AppBar(
       title: const Text('Caio Calado'),
