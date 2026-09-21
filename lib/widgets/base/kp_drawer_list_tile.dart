@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 class KpDrawerListTile extends StatelessWidget {
   /// Indica se o item está selecionado.
   final bool selected;
+
   /// O texto exibido no item.
   final String label;
+
   /// O rótulo semântico (ajuda) do item.
   final String semanticLabel;
+
   /// O ícone exibido no item.
   final IconData icon;
+
   /// Callback acionado quando o item é tocado.
   final VoidCallback onTap;
 
