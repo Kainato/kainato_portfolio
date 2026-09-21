@@ -6,8 +6,11 @@ import '../../core/routes/kp_routes.dart';
 import '../drawer/kp_drawer.dart';
 
 class KpScaffold extends StatelessWidget {
+  /// O corpo do scaffold.
   final Widget? body;
+  /// A página (rota) atual do scaffold.
   final KpRoutes route;
+  /// Callback acionado quando uma seção é tocada no app bar ou drawer.
   final void Function(String sectionId)? onSectionTap;
 
   /// `KpScaffold` é um widget de scaffold personalizado que inclui um
