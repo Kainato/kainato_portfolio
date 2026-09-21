@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kainato_portfolio/widgets/base/kp_drawer_list_tile.dart';
 
 import '../../core/data/portfolio_data.dart';
 import '../../core/extension/context_extension.dart';
@@ -32,36 +33,30 @@ class KpDrawer extends StatelessWidget {
               ),
             ),
             for (final r in KpRoutes.values)
-              Semantics(
-                button: true,
+              KpDrawerListTile(
+                semanticLabel: 'Ir para a página ${r.name}',
                 selected: r == route,
-                label: 'Ir para a página ${r.name}',
-                child: ListTile(
-                  leading: Icon(r.icon),
-                  title: Text(r.name),
-                  selected: r == route,
-                  onTap: () {
-                    Navigator.pop(context);
-                    if (r != route) Navigator.of(context).pushNamed(r.path);
-                  },
-                ),
+                label: r.name,
+                icon: r.icon,
+                onTap: () {
+                  Navigator.pop(context);
+                  if (r != route) Navigator.of(context).pushNamed(r.path);
+                },
               ),
             const Divider(),
             Text("Conecte-se Comigo", style: context.titleMedium).padding(
               const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
             ),
             for (final link in PortfolioData.contactLinks)
-              Semantics(
-                button: true,
-                label: 'Abrir ${link.label}: ${link.value}',
-                child: ListTile(
-                  leading: Icon(link.icon, size: 20),
-                  title: Text(link.value, overflow: TextOverflow.ellipsis),
-                  onTap: () {
-                    Navigator.pop(context);
-                    openExternalUrl(context, link.url);
-                  },
-                ),
+              KpDrawerListTile(
+                semanticLabel: 'Abrir ${link.label}: ${link.value}',
+                selected: false,
+                label: link.value,
+                icon: link.icon,
+                onTap: () {
+                  Navigator.pop(context);
+                  openExternalUrl(context, link.url);
+                },
               ),
             const SizedBox(height: 12),
           ],
