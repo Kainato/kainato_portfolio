@@ -2,7 +2,18 @@ import 'package:flutter/material.dart';
 
 import '../../core/extension/context_extension.dart';
 import '../../core/routes/kp_routes.dart';
+import '../../core/utils/kp_launcher.dart';
 import '../base/kp_appbar_action.dart';
+
+class _NavSection {
+  final String id;
+  final String label;
+  final String? externalUrl;
+
+  const _NavSection({required this.id, required this.label, this.externalUrl});
+
+  bool get isExternal => externalUrl != null;
+}
 
 class KpAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// A rota (página) atual exibida no app bar.
@@ -22,27 +33,18 @@ class KpAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onSectionTap,
   });
 
-  /// Seções de navegação disponíveis no app bar que redirecionam para diferentes partes da `HomePage`. Cada seção é representada por um par `(id, label)`.
+  /// Seções de navegação disponíveis no app bar.
   static const _sections = [
-    ('sobre', 'Sobre'),
-    ('projetos', 'Projetos'),
-    ('contato', 'Contato'),
+    _NavSection(id: 'sobre', label: 'Sobre'),
+    _NavSection(id: 'projetos', label: 'Projetos'),
+    _NavSection(id: 'contato', label: 'Contato'),
+    _NavSection(
+      id: 'certificados',
+      label: 'Certificados',
+      externalUrl:
+          'https://www.linkedin.com/in/kainato/details/certifications/',
+    ),
   ];
-
-  /// Manipula o toque em uma seção do app bar.
-  ///
-  /// Se um callback `onSectionTap` for fornecido, ele será chamado com o `id` da seção.
-  /// Caso contrário, a navegação padrão redireciona para a página inicial.
-  void _handleSectionTap(BuildContext context, String id) {
-    final onTap = onSectionTap;
-    if (onTap != null) {
-      onTap(id);
-    } else {
-      Navigator.of(
-        context,
-      ).pushNamedAndRemoveUntil(KpRoutes.home.path, (route) => false);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,13 +56,21 @@ class KpAppBar extends StatelessWidget implements PreferredSizeWidget {
         if (!isMobile) ...[
           for (final section in _sections)
             KpAppbarAction(
-              label: section.$2,
-              onSectionTap: () => _handleSectionTap(context, section.$1),
+              label: section.label,
+              onSectionTap: () => _handleSectionTap(context, section),
             ),
           const SizedBox(width: 8),
         ],
       ],
     );
+  }
+
+  void _handleSectionTap(BuildContext context, _NavSection section) {
+    if (section.isExternal) {
+      openExternalUrl(context, section.externalUrl!);
+    } else {
+      onSectionTap?.call(section.id);
+    }
   }
 
   @override
