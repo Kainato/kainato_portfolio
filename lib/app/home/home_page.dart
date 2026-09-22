@@ -24,9 +24,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final HomeController _controller = HomeController();
 
-  EdgeInsets _sectionPadding(BuildContext context) =>
-      EdgeInsets.symmetric(horizontal: context.isMobile ? 20 : 32);
-
   @override
   Widget build(BuildContext context) => KpScaffold(
     route: KpRoutes.home,
@@ -182,7 +179,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _about(BuildContext context) => Padding(
-    padding: _sectionPadding(context),
+    padding: _controller.sectionPadding(context),
     child: Center(
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1100),
@@ -223,7 +220,7 @@ class _HomePageState extends State<HomePage> {
   );
 
   Widget _projects(BuildContext context) => Padding(
-    padding: _sectionPadding(context),
+    padding: _controller.sectionPadding(context),
     child: Center(
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1100),
@@ -238,7 +235,7 @@ class _HomePageState extends State<HomePage> {
   );
 
   Widget _process(BuildContext context) => Padding(
-    padding: _sectionPadding(context),
+    padding: _controller.sectionPadding(context),
     child: Center(
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1100),
