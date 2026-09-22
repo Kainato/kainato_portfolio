@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kainato_portfolio/app/home/home_controller.dart';
 
 import '../../core/data/portfolio_data.dart';
 import '../../core/enum/assets.dart';
@@ -21,26 +22,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _sobreKey = GlobalKey();
-  final _projetosKey = GlobalKey();
-  final _contatoKey = GlobalKey();
-
-  void _scrollToSection(String id) {
-    final key = switch (id) {
-      'sobre' => _sobreKey,
-      'projetos' => _projetosKey,
-      'contato' => _contatoKey,
-      _ => null,
-    };
-    final sectionContext = key?.currentContext;
-    if (sectionContext != null) {
-      Scrollable.ensureVisible(
-        sectionContext,
-        duration: const Duration(milliseconds: 400),
-        curve: Curves.easeInOut,
-      );
-    }
-  }
+  final HomeController _controller = HomeController();
 
   EdgeInsets _sectionPadding(BuildContext context) =>
       EdgeInsets.symmetric(horizontal: context.isMobile ? 20 : 32);
@@ -48,18 +30,24 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) => KpScaffold(
     route: KpRoutes.home,
-    onSectionTap: _scrollToSection,
+    onSectionTap: _controller.scrollToSection,
     body: SelectionArea(
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(child: _hero(context)),
-          SliverToBoxAdapter(key: _sobreKey, child: const SizedBox.shrink()),
+          SliverToBoxAdapter(
+            key: _controller.sobreKey,
+            child: const SizedBox.shrink(),
+          ),
           KpIntro(
             title: 'SOBRE MIM',
             content: PortfolioData.about,
           ).buildSliver(context),
           SliverToBoxAdapter(child: _about(context)),
-          SliverToBoxAdapter(key: _projetosKey, child: const SizedBox.shrink()),
+          SliverToBoxAdapter(
+            key: _controller.projetosKey,
+            child: const SizedBox.shrink(),
+          ),
           KpIntro(
             title: 'PROJETOS',
             content:
@@ -72,7 +60,10 @@ class _HomePageState extends State<HomePage> {
                 'Minhas etapas de trabalho, da concepção com metodologias ágeis (Scrum/Kanban) até a entrega final.',
           ).buildSliver(context),
           SliverToBoxAdapter(child: _process(context)),
-          SliverToBoxAdapter(key: _contatoKey, child: _contact(context)),
+          SliverToBoxAdapter(
+            key: _controller.contatoKey,
+            child: _contact(context),
+          ),
           const SliverToBoxAdapter(child: SizedBox(height: 70)),
           SliverToBoxAdapter(
             child: Center(
@@ -133,7 +124,7 @@ class _HomePageState extends State<HomePage> {
               button: true,
               label: 'Ir para a seção de projetos',
               child: FilledButton(
-                onPressed: () => _scrollToSection('projetos'),
+                onPressed: () => _controller.scrollToSection('projetos'),
                 child: const Text('Ver projetos'),
               ),
             ),
