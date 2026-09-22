@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kainato_portfolio/widgets/base/kp_drawer_list_tile.dart';
 
+import '../../core/data/navigation_config.dart';
 import '../../core/data/portfolio_data.dart';
 import '../../core/extension/context_extension.dart';
 import '../../core/extension/text_extension.dart';
@@ -32,16 +33,13 @@ class KpDrawer extends StatelessWidget {
                 child: Text(PortfolioData.name, style: context.displaySmall),
               ),
             ),
-            for (final r in KpRoutes.values)
+            for (final item in NavigationConfig.mainItems)
               KpDrawerListTile(
-                semanticLabel: 'Ir para a página ${r.name}',
-                selected: r == route,
-                label: r.name,
-                icon: r.icon,
-                onTap: () {
-                  Navigator.pop(context);
-                  if (r != route) Navigator.of(context).pushNamed(r.path);
-                },
+                semanticLabel: item.semanticLabel,
+                selected: false,
+                label: item.label,
+                icon: item.icon,
+                onTap: () => _handleItemTap(context, item),
               ),
             const Divider(),
             Text("Conecte-se Comigo", style: context.titleMedium).padding(
@@ -63,5 +61,15 @@ class KpDrawer extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _handleItemTap(BuildContext context, NavigationItem item) {
+    Navigator.pop(context);
+    
+    if (item.isExternal) {
+      openExternalUrl(context, item.externalUrl!);
+    } else if (item.isRoute) {
+      onSectionTap?.call(item.id);
+    }
   }
 }
