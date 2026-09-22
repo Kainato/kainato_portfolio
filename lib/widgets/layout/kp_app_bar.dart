@@ -66,10 +66,6 @@ class KpAppBar extends StatelessWidget implements PreferredSizeWidget {
               label: section.$2,
               onSectionTap: () => _handleSectionTap(context, section.$1),
             ),
-          KpAppbarAction(
-            label: 'Certificados',
-            onSectionTap: () => _goToRoute(context, KpRoutes.certificados),
-          ),
           const SizedBox(width: 8),
         ],
       ],

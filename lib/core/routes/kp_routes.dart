@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../app/certificados/certificados_page.dart';
 import '../../app/home/home_page.dart';
 
-enum KpRoutes { home, certificados }
+enum KpRoutes { home }
 
 extension KpRoutesExtension on KpRoutes {
   String get name {
     switch (this) {
       case KpRoutes.home:
         return 'Home';
-      case KpRoutes.certificados:
-        return 'Certificados';
     }
   }
 
@@ -19,8 +16,6 @@ extension KpRoutesExtension on KpRoutes {
     switch (this) {
       case KpRoutes.home:
         return '/';
-      case KpRoutes.certificados:
-        return '/certificados';
     }
   }
 
@@ -28,8 +23,6 @@ extension KpRoutesExtension on KpRoutes {
     switch (this) {
       case KpRoutes.home:
         return Icons.home_outlined;
-      case KpRoutes.certificados:
-        return Icons.workspace_premium_outlined;
     }
   }
 
@@ -37,8 +30,6 @@ extension KpRoutesExtension on KpRoutes {
     switch (this) {
       case KpRoutes.home:
         return (context) => const HomePage();
-      case KpRoutes.certificados:
-        return (context) => const CertificadosPage();
     }
   }
 }
