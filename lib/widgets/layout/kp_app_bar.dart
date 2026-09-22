@@ -44,15 +44,6 @@ class KpAppBar extends StatelessWidget implements PreferredSizeWidget {
     }
   }
 
-  /// Manipula a navegação para uma rota específica.
-  ///
-  /// Se a rota fornecida for a mesma que a rota atual, nenhuma ação é tomada.
-  /// Caso contrário, a navegação é realizada para a rota especificada.
-  void _goToRoute(BuildContext context, KpRoutes route) {
-    if (route == currentRoute) return;
-    Navigator.of(context).pushNamed(route.path);
-  }
-
   @override
   Widget build(BuildContext context) {
     final bool isMobile = context.isMobile;
