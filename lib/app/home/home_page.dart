@@ -5,11 +5,11 @@ import '../../core/data/portfolio_data.dart';
 import '../../core/routes/kp_routes.dart';
 import '../../widgets/base/kp_intro.dart';
 import '../../widgets/layout/kp_scaffold.dart';
-import 'sections/about/about_section.dart';
-import 'sections/contact/contact_section.dart';
-import 'sections/hero/hero_section.dart';
-import 'sections/process/process_section.dart';
-import 'sections/projects/projects_section.dart';
+import 'sections/about_section.dart';
+import 'sections/contact_section.dart';
+import 'sections/hero_section.dart';
+import 'sections/process_section.dart';
+import 'sections/projects_section.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
