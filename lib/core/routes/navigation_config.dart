@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../routes/kp_routes.dart';
+import 'kp_routes.dart';
 
 /// Representa um item de navegação do aplicativo.
 ///

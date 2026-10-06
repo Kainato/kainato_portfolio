@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/data/navigation_config.dart';
+import '../../core/routes/navigation_config.dart';
 import '../../core/extension/context_extension.dart';
 import '../../core/routes/kp_routes.dart';
 import '../../core/utils/kp_launcher.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kainato_portfolio/widgets/base/kp_drawer_list_tile.dart';
 
-import '../../core/data/navigation_config.dart';
+import '../../core/routes/navigation_config.dart';
 import '../../core/data/portfolio_data.dart';
 import '../../core/extension/context_extension.dart';
 import '../../core/extension/text_extension.dart';
