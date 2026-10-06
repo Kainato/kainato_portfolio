@@ -28,7 +28,7 @@ class HeroSection extends StatelessWidget {
         ),
         const SizedBox(height: 22),
         Text(
-          'Olá, eu sou\n${PortfolioData.name}.',
+          'Olá, eu sou\n${PortfolioData.name}!',
           style: context.displayLarge?.copyWith(
             fontWeight: FontWeight.w800,
             height: 1,
