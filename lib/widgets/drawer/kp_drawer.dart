@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kainato_portfolio/widgets/base/kp_drawer_list_tile.dart';
 
-import '../../core/routes/navigation_config.dart';
+import '../../core/data/contact_link.dart';
 import '../../core/data/portfolio_data.dart';
 import '../../core/extension/context_extension.dart';
 import '../../core/extension/text_extension.dart';
 import '../../core/routes/kp_routes.dart';
+import '../../core/routes/navigation_config.dart';
 import '../../core/utils/kp_launcher.dart';
 
 class KpDrawer extends StatelessWidget {
@@ -45,7 +46,7 @@ class KpDrawer extends StatelessWidget {
             Text("Conecte-se Comigo", style: context.titleMedium).padding(
               const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
             ),
-            for (final link in PortfolioData.contactLinks)
+            for (final link in ContactLink.contactLinks)
               KpDrawerListTile(
                 semanticLabel: 'Abrir ${link.label}: ${link.value}',
                 selected: false,
@@ -65,7 +66,7 @@ class KpDrawer extends StatelessWidget {
 
   void _handleItemTap(BuildContext context, NavigationItem item) {
     Navigator.pop(context);
-    
+
     if (item.isExternal) {
       openExternalUrl(context, item.externalUrl!);
     } else if (item.isRoute) {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kainato_portfolio/core/data/portfolio_data.dart';
+import 'package:kainato_portfolio/core/data/contact_link.dart';
 import 'package:kainato_portfolio/core/extension/context_extension.dart';
-import 'package:kainato_portfolio/core/models/contact_link.dart';
 import 'package:kainato_portfolio/core/utils/kp_launcher.dart';
 import 'package:kainato_portfolio/widgets/base/section_tile.dart';
 
@@ -44,7 +43,7 @@ class ContactSection extends StatelessWidget {
                 spacing: 16,
                 runSpacing: 16,
                 children: [
-                  for (final link in PortfolioData.contactLinks)
+                  for (final link in ContactLink.contactLinks)
                     _ContactChip(link: link),
                 ],
               ),

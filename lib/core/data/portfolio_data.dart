@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
 
 import '../models/certificate.dart';
-import '../models/contact_link.dart';
 import '../models/experience.dart';
 import '../models/portfolio_project.dart';
 import '../models/skill.dart';
 
-/// Fonte central de dados (estáticos/mocados) usados pelas telas do portfólio.
+/// Fonte central de dados usados pelas telas do projeto.
+///
+/// Essas informações são utilizadas para popular as diferentes seções do aplicativo e raramente precisam ser alteradas, apenas quando há atualizações relevantes no portfólio ou nos dados pessoais do desenvolvedor.
 abstract final class PortfolioData {
+  // Meu nome
   static const String name = 'Caio Calado';
+  // Meu cargo profissional
   static const String role = 'Desenvolvedor Flutter Sênior';
+  // Minha tagline profissional
   static const String tagline = 'FLUTTER • MOBILE • UI/UX';
 
+  // Descrição exibida na seção hero do aplicativo
   static const String heroDescription =
       'Desenvolvedor Flutter apaixonado por criar soluções digitais que unem tecnologia, '
       'clareza e uma boa experiência para quem usa.';
 
+  // Descrição exibida na seção "Sobre" do aplicativo
   static const String about =
       'Desenvolvedor Frontend focado em Flutter & Dart com mais de 6 anos de experiência no '
       'desenvolvimento, arquitetura e manutenção de aplicações móveis e web. Ampla vivência na '
@@ -23,41 +29,6 @@ abstract final class PortfolioData {
       'desenvolvimento de painéis administrativos/backends com Laravel e Filament. Forte atuação '
       'em colaboração com times de UX/UI (Figma), aplicação de metodologias ágeis e publicação '
       'de aplicativos nas lojas.';
-
-  /// Referência para recrutadores enquanto não há um PDF direto hospedado.
-  static const String resumeUrl =
-      'https://sites.google.com/view/portifolio-caio-calado';
-
-  static const List<ContactLink> contactLinks = [
-    ContactLink(
-      type: ContactLinkType.phone,
-      label: 'Telefone',
-      value: '(81) 9.9211-3718',
-      url: 'tel:+5581992113718',
-      icon: Icons.phone_outlined,
-    ),
-    ContactLink(
-      type: ContactLinkType.email,
-      label: 'E-mail',
-      value: 'caiocaladaraujo@gmail.com',
-      url: 'mailto:caiocaladaraujo@gmail.com',
-      icon: Icons.email_outlined,
-    ),
-    ContactLink(
-      type: ContactLinkType.linkedin,
-      label: 'LinkedIn',
-      value: 'linkedin.com/in/caio-calado',
-      url: 'https://linkedin.com/in/caio-calado',
-      icon: Icons.business_center_outlined,
-    ),
-    ContactLink(
-      type: ContactLinkType.github,
-      label: 'GitHub',
-      value: 'github.com/Kainato',
-      url: 'https://github.com/Kainato',
-      icon: Icons.code,
-    ),
-  ];
 
   static const List<Skill> skills = [
     Skill(
