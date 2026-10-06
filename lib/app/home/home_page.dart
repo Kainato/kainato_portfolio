@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:kainato_portfolio/core/enum/assets.dart';
-import 'package:kainato_portfolio/core/enum/hard_skill.dart';
-import 'package:kainato_portfolio/core/enum/soft_skill.dart';
-import 'package:kainato_portfolio/core/routes/kp_routes.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:kainato_portfolio/app/home/home_controller.dart';
 
-import '../../core/extension/context_extension.dart';
-import '../../widgets/base/section_tile.dart';
-import '../../widgets/base/skill_chip.dart';
-import '../../widgets/dialogs/kp_alert_dialog.dart';
+import '../../core/data/portfolio_data.dart';
+import '../../core/routes/kp_routes.dart';
+import '../../widgets/base/kp_intro.dart';
 import '../../widgets/layout/kp_scaffold.dart';
+import 'sections/about_section.dart';
+import 'sections/contact_section.dart';
+import 'sections/hero_section.dart';
+import 'sections/process_section.dart';
+import 'sections/projects_section.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,88 +19,73 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final HomeController _controller = HomeController();
+
   @override
-  Widget build(BuildContext context) {
-    return KpScaffold(
-      route: KpRoutes.home,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        spacing: 16.0,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Row(
-              spacing: 8.0,
-              children: [
-                Flexible(
-                  flex: 3,
-                  child: ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: Text(
-                      'Hello, I am Caio!',
-                      style: context.displayMedium,
-                    ),
-                    subtitle: Text(
-                      'A front-end developer who loves to create new app ideas and bring them to life using design and code tools, for both mobile and web devices.',
-                      style: context.titleSmall,
-                    ),
-                  ),
-                ),
-                Flexible(flex: 1, child: Image.asset(Assets.dashatar.path)),
-              ],
+  Widget build(BuildContext context) => KpScaffold(
+    route: KpRoutes.home,
+    onSectionTap: _controller.scrollToSection,
+    body: SelectionArea(
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: HeroSection(
+              onProjectsTap: () => _controller.scrollToSection('projetos'),
             ),
           ),
-          SectionHeaderTile(title: 'Hard-skills', icon: Icons.code),
-          Wrap(
-            spacing: 8.0,
-            runSpacing: 8.0,
-            alignment: WrapAlignment.start,
-            children: HardSkill.values
-                .map(
-                  (skill) => SkillChip(
-                    label: skill.name,
-                    labelColor: skill.onColor,
-                    hoverColor: skill.color,
-                    onTap: () async {
-                      await showKpAlertDialog(
-                        context: context,
-                        title: 'Abrir link externo',
-                        content:
-                            'Você será redirecionado para ${skill.name}. Deseja continuar?',
-                        icon: Icons.open_in_new,
-                        confirmLabel: 'Abrir',
-                        cancelLabel: 'Cancelar',
-                        onConfirm: () async {
-                          await launchUrl(Uri.parse(skill.link));
-                        },
-                      );
-                    },
-                  ),
-                )
-                .toList(),
+          SliverToBoxAdapter(
+            key: _controller.sobreKey,
+            child: const SizedBox.shrink(),
           ),
-          SectionHeaderTile(title: 'Soft-skills', icon: Icons.book),
-          Wrap(
-            spacing: 8.0,
-            runSpacing: 8.0,
-            alignment: WrapAlignment.start,
-            children: SoftSkill.values
-                .map(
-                  (skill) => SkillChip(
-                    label: skill.name,
-                    avatar: Icon(
-                      skill.icon,
-                      size: 16.0,
-                      color: context.onSurfaceColor,
-                    ),
-                  ),
-                )
-                .toList(),
+          KpIntro(
+            title: 'SOBRE MIM',
+            content: PortfolioData.about,
+          ).buildSliver(context),
+          SliverToBoxAdapter(
+            child: AboutSection(
+              sectionPadding: _controller.sectionPadding(context),
+            ),
           ),
+          SliverToBoxAdapter(
+            key: _controller.projetosKey,
+            child: const SizedBox.shrink(),
+          ),
+          KpIntro(
+            title: 'PROJETOS',
+            content:
+                'Cases apresentados pelo problema, processo, decisões e resultado — não apenas pelo código.',
+          ).buildSliver(context),
+          SliverToBoxAdapter(
+            child: ProjectsSection(
+              sectionPadding: _controller.sectionPadding(context),
+            ),
+          ),
+          KpIntro(
+            title: 'PROCESSO',
+            content:
+                'Minhas etapas de trabalho, da concepção com metodologias ágeis (Scrum/Kanban) até a entrega final.',
+          ).buildSliver(context),
+          SliverToBoxAdapter(
+            child: ProcessSection(
+              sectionPadding: _controller.sectionPadding(context),
+            ),
+          ),
+          SliverToBoxAdapter(
+            key: _controller.contatoKey,
+            child: const ContactSection(),
+          ),
+          const SliverToBoxAdapter(child: SizedBox(height: 70)),
+          SliverToBoxAdapter(
+            child: Center(
+              child: Text(
+                '© 2026 ${PortfolioData.name} • Flutter Developer',
+                style: const TextStyle(color: Colors.white38),
+              ),
+            ),
+          ),
+          const SliverToBoxAdapter(child: SizedBox(height: 30)),
         ],
       ),
-    );
-  }
+    ),
+  );
 }

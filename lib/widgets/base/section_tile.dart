@@ -1,23 +1,62 @@
 import 'package:flutter/material.dart';
-import 'package:kainato_portfolio/core/extension/context_extension.dart';
 
-class SectionHeaderTile extends StatelessWidget {
-  final String title;
-  final IconData icon;
-  const SectionHeaderTile({super.key, required this.title, required this.icon});
+/// Envolve um card/tile de seção com elevação e escala sutis ao passar o mouse.
+class SectionTile extends StatefulWidget {
+  final Widget child;
+  final VoidCallback? onTap;
+  final String? semanticLabel;
+
+  const SectionTile({
+    super.key,
+    required this.child,
+    this.onTap,
+    this.semanticLabel,
+  });
+
+  @override
+  State<SectionTile> createState() => _SectionTileState();
+}
+
+class _SectionTileState extends State<SectionTile> {
+  bool _hovering = false;
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: EdgeInsets.all(16.0),
-      title: Text(
-        title,
-        style: context.headlineMedium?.copyWith(
-          color: context.onInverseSurface,
+    final content = MouseRegion(
+      cursor: widget.onTap != null
+          ? SystemMouseCursors.click
+          : MouseCursor.defer,
+      onEnter: (_) => setState(() => _hovering = true),
+      onExit: (_) => setState(() => _hovering = false),
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          curve: Curves.easeOut,
+          transform: Matrix4.translationValues(0, _hovering ? -4 : 0, 0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: _hovering
+                ? [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.35),
+                      blurRadius: 20,
+                      offset: const Offset(0, 10),
+                    ),
+                  ]
+                : const [],
+          ),
+          child: widget.child,
         ),
       ),
-      trailing: Icon(icon, color: context.onInverseSurface),
-      tileColor: context.inverseSurface,
+    );
+
+    if (widget.semanticLabel == null) return content;
+
+    return Semantics(
+      button: widget.onTap != null,
+      label: widget.semanticLabel,
+      child: content,
     );
   }
 }

@@ -1,32 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:kainato_portfolio/widgets/drawer/kp_drawer.dart';
 import 'package:kainato_portfolio/widgets/layout/kp_app_bar.dart';
 
+import '../../core/extension/context_extension.dart';
 import '../../core/routes/kp_routes.dart';
+import '../drawer/kp_drawer.dart';
 
-class KpScaffold extends StatefulWidget {
+class KpScaffold extends StatelessWidget {
+  /// O corpo do scaffold.
   final Widget? body;
-  final KpRoutes? route;
-  const KpScaffold({super.key, required this.body, this.route});
 
-  @override
-  State<KpScaffold> createState() => _KpScaffoldState();
-}
+  /// A página (rota) atual do scaffold.
+  final KpRoutes route;
 
-class _KpScaffoldState extends State<KpScaffold> {
-  Widget get body => widget.body ?? Placeholder();
-  ScrollPhysics get scrollable => body is Placeholder
-      ? const NeverScrollableScrollPhysics()
-      : const PageScrollPhysics();
-  Widget? get drawer =>
-      widget.route != null ? KpDrawer(route: widget.route!) : null;
+  /// Callback acionado quando uma seção é tocada no app bar ou drawer.
+  final void Function(String sectionId)? onSectionTap;
+
+  /// `KpScaffold` é um widget de scaffold personalizado que inclui um
+  /// app bar personalizado (`KpAppBar`) e um drawer condicional que só é exibido para telas menores.
+  ///
+  /// ### Parâmetros
+  /// - `body`: O corpo do scaffold.
+  /// - `route`: A página (rota) atual do scaffold.
+  /// - `onSectionTap`: Callback acionado quando uma seção é tocada no app bar ou drawer.
+  const KpScaffold({
+    super.key,
+    required this.body,
+    this.route = KpRoutes.home,
+    this.onSectionTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: KpAppBar(),
-      drawer: drawer,
-      body: SingleChildScrollView(physics: scrollable, child: body),
+      appBar: KpAppBar(currentRoute: route, onSectionTap: onSectionTap),
+      drawer: context.isMobile
+          ? KpDrawer(route: route, onSectionTap: onSectionTap)
+          : null,
+      body: body ?? const Center(child: CircularProgressIndicator()),
     );
   }
 }

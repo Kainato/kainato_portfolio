@@ -1,54 +1,63 @@
 import 'package:flutter/material.dart';
-import 'package:kainato_portfolio/core/extension/context_extension.dart';
+
+import '../../core/models/skill.dart';
+import '../../core/utils/kp_launcher.dart';
 
 class SkillChip extends StatefulWidget {
-  final String label;
-  final Color? labelColor;
-  final Color? hoverColor;
-  final Widget? avatar;
-  final VoidCallback? onTap;
-
-  const SkillChip({
-    super.key,
-    required this.label,
-    this.labelColor,
-    this.hoverColor,
-    this.avatar,
-    this.onTap,
-  });
+  final Skill skill;
+  const SkillChip({super.key, required this.skill});
 
   @override
   State<SkillChip> createState() => _SkillChipState();
 }
 
 class _SkillChipState extends State<SkillChip> {
-  String get label => widget.label;
-  Color get labelColor => widget.labelColor ?? context.onSurfaceColor;
-  Color get hoverColor => widget.hoverColor ?? Colors.transparent;
-  Widget? get avatar => widget.avatar;
-  VoidCallback? get onTap => widget.onTap;
-  bool get isClickable => onTap != null;
-  bool _isHovered = false;
-  MouseCursor get mouseCursor =>
-      isClickable ? SystemMouseCursors.click : MouseCursor.defer;
+  bool _hovering = false;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
+    final skill = widget.skill;
+    return Semantics(
+      button: true,
+      label: 'Abrir referência sobre ${skill.name}',
       child: MouseRegion(
-        onEnter: (_) => setState(() => _isHovered = true),
-        onExit: (_) => setState(() => _isHovered = false),
-        child: Chip(
-          mouseCursor: mouseCursor,
-          label: Text(
-            label,
-            style: TextStyle(
-              color: _isHovered ? labelColor : context.onSurfaceColor,
+        cursor: SystemMouseCursors.click,
+        onEnter: (_) => setState(() => _hovering = true),
+        onExit: (_) => setState(() => _hovering = false),
+        child: GestureDetector(
+          onTap: () => openExternalUrl(context, skill.url),
+          child: AnimatedScale(
+            scale: _hovering ? 1.06 : 1,
+            duration: const Duration(milliseconds: 150),
+            curve: Curves.easeOut,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 150),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+              decoration: BoxDecoration(
+                color: _hovering
+                    ? skill.color
+                    : skill.color.withValues(alpha: 0.85),
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: _hovering
+                    ? [
+                        BoxShadow(
+                          color: skill.color.withValues(alpha: 0.45),
+                          blurRadius: 12,
+                          offset: const Offset(0, 4),
+                        ),
+                      ]
+                    : const [],
+              ),
+              child: Text(
+                skill.name,
+                style: TextStyle(
+                  color: skill.onColor,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 13,
+                ),
+              ),
             ),
           ),
-          backgroundColor: _isHovered ? hoverColor : Colors.transparent,
-          avatar: avatar,
         ),
       ),
     );

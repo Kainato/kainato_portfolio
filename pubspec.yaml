@@ -1,6 +1,6 @@
 name: kainato_portfolio
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0+1
 
 environment:
@@ -8,6 +8,8 @@ environment:
 
 dependencies:
   flutter:
+    sdk: flutter
+  flutter_web_plugins:
     sdk: flutter
   url_launcher: ^6.1.0
 
@@ -20,3 +22,9 @@ flutter:
   uses-material-design: true
   assets:
     - assets/home/
+
+scripts:
+  build_web: flutter build web # Cria o aplicativo na versão web
+  docs: mkdir docs # Cria o diretório onde será armazenado o código fonte web do projeto
+  copy: xcopy /E /H /Y build\web\* docs\ # Copia todo o conteúdo para a pasta de documentos.
+
