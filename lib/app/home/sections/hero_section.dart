@@ -69,15 +69,6 @@ class HeroSection extends StatelessWidget {
                 child: const Text('GitHub'),
               ),
             ),
-            Semantics(
-              button: true,
-              label: 'Ver currículo completo',
-              child: OutlinedButton(
-                onPressed: () =>
-                    openExternalUrl(context, PortfolioData.resumeUrl),
-                child: const Text('Ver currículo'),
-              ),
-            ),
           ],
         ),
       ],
