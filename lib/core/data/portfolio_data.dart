@@ -198,7 +198,7 @@ abstract final class PortfolioData {
           'Este repositório atua como um hub de conhecimento e referência técnica: '
           'um guia prático para rápida consulta, reutilização de snippets testados e '
           'registro da evolução em diferentes tecnologias e padrões de arquitetura. '
-          'Centralizado e navegação adaptada para desktop e mobile.',
+          'O conteúdo é centralizado, com navegação adaptada para desktop e mobile.',
       url: 'https://bibliotech-three.vercel.app/',
     ),
     PortfolioProject(
