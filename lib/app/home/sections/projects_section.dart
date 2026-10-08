@@ -41,7 +41,8 @@ class _ProjectCard extends StatelessWidget {
       onTap: url != null ? () => openExternalUrl(context, url) : null,
       child: Card(
         margin: const EdgeInsets.only(bottom: 24),
-        child: Padding(
+        child: Container(
+          width: double.infinity,
           padding: const EdgeInsets.all(30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
