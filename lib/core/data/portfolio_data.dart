@@ -190,6 +190,19 @@ abstract final class PortfolioData {
     ),
     PortfolioProject(
       order: '04',
+      title: 'Bibliotech',
+      subtitle:
+          'Projeto que transforma o "cemitério de repositórios" em uma documentação viva que consolida conhecimentos adquiridos.',
+      stack: 'TypeScript • Tailwind CSS • Markdown',
+      description:
+          'Este repositório atua como um hub de conhecimento e referência técnica: '
+          'um guia prático para rápida consulta, reutilização de snippets testados e '
+          'registro da evolução em diferentes tecnologias e padrões de arquitetura. '
+          'Centralizado e navegação adaptada para desktop e mobile.',
+      url: 'https://bibliotech-three.vercel.app/',
+    ),
+    PortfolioProject(
+      order: '05',
       title: 'Este portfólio',
       subtitle:
           'Site pessoal responsivo desenvolvido inteiramente em Flutter Web.',
