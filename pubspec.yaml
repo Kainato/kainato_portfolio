@@ -27,4 +27,3 @@ scripts:
   build_web: flutter build web # Cria o aplicativo na versão web
   docs: mkdir docs # Cria o diretório onde será armazenado o código fonte web do projeto
   copy: xcopy /E /H /Y build\web\* docs\ # Copia todo o conteúdo para a pasta de documentos.
-
